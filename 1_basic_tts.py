@@ -23,13 +23,22 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 # ----------------------------------------------------------------
 try:
     print("Loading SpeechT5 processor...")
-    processor = SpeechT5Processor.from_pretrained("microsoft/speecht5_tts")
+    processor = SpeechT5Processor.from_pretrained(
+        "./models/speecht5_tts",
+        local_files_only=True
+        )
 
     print("Loading SpeechT5 TTS model...")
-    model = SpeechT5ForTextToSpeech.from_pretrained("microsoft/speecht5_tts")
+    model = SpeechT5ForTextToSpeech.from_pretrained(
+        "./models/speecht5_tts",
+        local_files_only=True
+        )
 
     print("Loading HiFi-GAN vocoder...")
-    vocoder = SpeechT5HifiGan.from_pretrained("microsoft/speecht5_hifigan")
+    vocoder = SpeechT5HifiGan.from_pretrained(
+        "./models/speecht5_hifigan",
+        local_files_only=True
+        )
 except Exception as e:
     print(f"Error loading models: {e}")
     sys.exit(1)
@@ -40,8 +49,10 @@ except Exception as e:
 # ----------------------------------------------------------------
 try:
     print("Loading speaker embeddings...")
+    
     embeddings_dataset = load_dataset(
-        "dvinagre/euskera-speaker-embeddings",
+        'parquet',
+        data_files="./datasets/euskera.parquet",
         split='train'
     )
     # Pick one speaker embedding (index 7306 is a commonly used female voice)

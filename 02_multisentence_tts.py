@@ -21,13 +21,27 @@ SAMPLE_RATE = 16000
 # 1. Load models and speaker embeddings
 # ----------------------------------------------------------------
 try:
-    processor = SpeechT5Processor.from_pretrained("microsoft/speecht5_tts")
-    model = SpeechT5ForTextToSpeech.from_pretrained("microsoft/speecht5_tts")
-    vocoder = SpeechT5HifiGan.from_pretrained("microsoft/speecht5_hifigan")
+    processor = SpeechT5Processor.from_pretrained(
+        "./models/speecht5_tts",
+        local_files_only=True
+        )
+    
+    model = SpeechT5ForTextToSpeech.from_pretrained(
+        "./models/speecht5_tts",
+        local_files_only=True
+        )
+    
+    vocoder = SpeechT5HifiGan.from_pretrained(
+        "microsoft/speecht5_hifigan",
+        local_files_only=True
+        )
+    
     embeddings_dataset = load_dataset(
-        "Matthijs/cmu-arctic-xvectors",
-        split="validation"
+        'parquet',
+        data_files="./datasets/euskera.parquet",
+        split='train'
     )
+    
     print(f"Loaded {len(embeddings_dataset)} speaker embeddings.")
 except Exception as e:
     print(f"Error during model/data loading: {e}")
@@ -44,7 +58,7 @@ sentences = [
 ]
 
 # Three different speaker embedding indices for variety
-speaker_indices = [7306, 2000, 5000]
+speaker_indices = [0, 2000, 5000]
 
 # ----------------------------------------------------------------
 # 3. Generate audio for each sentence
@@ -57,7 +71,7 @@ for i, (text, spk_idx) in enumerate(zip(sentences, speaker_indices)):
 
     # Prepare speaker embedding for this voice
     speaker_embedding = torch.tensor(
-        embeddings_dataset[spk_idx]["xvector"]
+        embeddings_dataset[spk_idx]["speaker_embeddings"]
     ).unsqueeze(0)
 
     # Tokenize and generate
