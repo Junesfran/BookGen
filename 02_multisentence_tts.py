@@ -51,6 +51,39 @@ except Exception as e:
 # 2. Define sentences and speaker indices
 #    Different indices produce different voice characteristics.
 # ----------------------------------------------------------------
+
+
+# A MEDIO HACER
+# ----------------------------------------------------------------
+recorer_json = {
+  "escenas": [
+    {
+      "personaje": "Bernarda",
+      "texto": "¡Silencio! ¿Es que no se puede estar en esta casa con un poco de paz?",
+      "emocion": "ira"
+    },
+    {
+      "personaje": "Adela",
+      "texto": "¡Yo no aguantaré más tus gritos! Me iré de aquí, aunque sea al arroyo.",
+      "emocion": "desafiante"
+    },
+    {
+      "personaje": "La Poncia",
+      "texto": "Bernarda, deja a la muchacha. La sangre se le sube a la cabeza con este calor que hace.",
+      "emocion": "calma"
+    }
+  ]
+}
+
+escena = recorer_json["escenas"]
+voces = len(embeddings_dataset)
+
+for x in escena:
+    rn = np.random.randint(0, voces)
+    x['voz'] = rn
+
+# ----------------------------------------------------------------
+
 sentences = [
     "Hugging Face makes natural language processing accessible to everyone.",
     "Text to speech models can read your documents aloud.",
