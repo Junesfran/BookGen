@@ -39,6 +39,11 @@ recorer_json = {
       "personaje": "La Poncia",
       "texto": "Bernarda, deja a la muchacha. La sangre se le sube a la cabeza con este calor que hace.",
       "emocion": "calma"
+    },
+    {
+      "personaje": "Adela",
+      "texto": "¡Turbo amogus!.",
+      "emocion": "desafiante"
     }
   ]
 }
@@ -46,8 +51,10 @@ recorer_json = {
 escena = recorer_json["escenas"]
 voces = len(embeddings_dataset)
 
+personajes = {}
+
 for x in escena:
     rn = np.random.randint(0, voces)
-    x['voz'] = rn
+    personajes[x['personaje']] = rn
     
-print(escena)
+print(personajes)
