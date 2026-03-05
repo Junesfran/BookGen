@@ -32,10 +32,15 @@ try:
         )
     
     vocoder = SpeechT5HifiGan.from_pretrained(
-        "microsoft/speecht5_hifigan",
+        "./models/speecht5_hifigan",
         local_files_only=True
         )
     
+    embeddings_dataset = load_dataset(
+        'parquet',
+        data_files="./datasets/euskera.parquet",
+        split='train'
+    )
     embeddings_dataset = load_dataset(
         'parquet',
         data_files="./datasets/euskera.parquet",
@@ -52,9 +57,6 @@ except Exception as e:
 #    Different indices produce different voice characteristics.
 # ----------------------------------------------------------------
 
-
-# A MEDIO HACER
-# ----------------------------------------------------------------
 recorer_json = {
   "escenas": [
     {
@@ -83,17 +85,6 @@ personajes = {}
 for x in escena:
     rn = np.random.randint(0, voces)
     personajes[x['personaje']] = rn
-
-# ----------------------------------------------------------------
-
-sentences = [
-    "Hugging Face makes natural language processing accessible to everyone.",
-    "Text to speech models can read your documents aloud.",
-    "Neural vocoders produce high quality audio waveforms.",
-]
-
-# Three different speaker embedding indices for variety
-speaker_indices = [0, 2000, 5000]
 
 # ----------------------------------------------------------------
 # 3. Generate audio for each sentence
