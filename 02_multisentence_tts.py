@@ -1,6 +1,7 @@
 """
-02_multi_sentence_tts.py
-Generate speech for multiple sentences with different speaker voices.
+02_multi_sentence_tts_npy.py
+Generate speech for multiple sentences with different speaker voices
+using a .npy dataset of speaker embeddings.
 """
 
 import os
@@ -9,7 +10,7 @@ import torch
 import numpy as np
 from scipy.io.wavfile import write as write_wav
 
-from transformers import SpeechT5Processor, SpeechT5ForTextToSpeech, SpeechT5HifiGan
+from transformers import SpeechT5Processor, SpeechT5ForTextToSpeech, SpeechT5HifiGan, SpeechT5Tokenizer, SpeechT5FeatureExtractor
 from datasets import load_dataset
 
 OUTPUT_DIR = os.path.expanduser("~/hugging_face_guide/text_to_speech")
@@ -21,40 +22,40 @@ SAMPLE_RATE = 16000
 # 1. Load models and speaker embeddings
 # ----------------------------------------------------------------
 try:
-    processor = SpeechT5Processor.from_pretrained(
-        "./models/speecht5_tts",
-        local_files_only=True
-        )
+    tokenizer = SpeechT5Tokenizer.from_pretrained("./models/speecht5_tts", local_files_only=True)
+    feature_extractor = SpeechT5FeatureExtractor.from_pretrained("./models/speecht5_tts", local_files_only=True)
+
+    processor = SpeechT5Processor(
+        tokenizer=tokenizer,
+        feature_extractor=feature_extractor
+    )
     
     model = SpeechT5ForTextToSpeech.from_pretrained(
         "./models/speecht5_tts",
         local_files_only=True
-        )
+    )
     
     vocoder = SpeechT5HifiGan.from_pretrained(
         "./models/speecht5_hifigan",
         local_files_only=True
-        )
-    
-    embeddings_dataset = load_dataset(
-        'parquet',
-        data_files="./datasets/euskera.parquet",
-        split='train'
-    )
-    embeddings_dataset = load_dataset(
-        'parquet',
-        data_files="./datasets/euskera.parquet",
-        split='train'
     )
     
-    print(f"Loaded {len(embeddings_dataset)} speaker embeddings.")
+    # Load .npy dataset
+    # Asumimos que el .npy contiene un array de diccionarios: {"speaker_embeddings": embedding_array}
+    embeddings_dataset = load_dataset(
+        "Matthijs/cmu-arctic-xvectors",
+        split="validation",
+        trust_remote_code=True
+    )
+
 except Exception as e:
     print(f"Error during model/data loading: {e}")
     sys.exit(1)
 
+
+
 # ----------------------------------------------------------------
 # 2. Define sentences and speaker indices
-#    Different indices produce different voice characteristics.
 # ----------------------------------------------------------------
 
 recorer_json = {
@@ -101,7 +102,7 @@ for i, x in enumerate(escena):
 
     # Prepare speaker embedding for this voice
     speaker_embedding = torch.tensor(
-        embeddings_dataset[voz]["speaker_embeddings"]
+        embeddings_dataset[voz]["xvector"]
     ).unsqueeze(0)
 
     # Tokenize and generate
@@ -117,13 +118,7 @@ for i, x in enumerate(escena):
     duration = speech.shape[0] / SAMPLE_RATE
     print(f"Generated {speech.shape[0]} samples ({duration:.2f}s)")
 
-    # Save individual file
-    # output_path = os.path.join(OUTPUT_DIR, f"output_sentence_{i + 1}.wav")
-    speech_numpy = speech.numpy()
-    # write_wav(output_path, rate=SAMPLE_RATE, data=(speech_numpy * 32767).astype(np.int16))
-    # print(f"Saved: {output_path}")
-
-    all_waveforms.append(speech_numpy)
+    all_waveforms.append(speech.numpy())
 
 # ----------------------------------------------------------------
 # 4. Concatenate all waveforms with short silence gaps
