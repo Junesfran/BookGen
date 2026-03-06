@@ -3,4 +3,4 @@
 /.prueba/*
 /datasets/*
 venv_huggingface/
-venv_xtts/
+venv_xtts_311/

@@ -1,13 +1,26 @@
-# Núcleo de computación
-torch==2.1.2
-torchaudio==2.1.2
+# --- Base compatible con Python moderno ---
+setuptools==69.5.1
+torch==2.4.1
+torchaudio==2.4.1
 numpy<2.0.0
 
-# El motor de voz
-coqui-tts==0.22.0
+# --- Motor de voz actualizado ---
+coqui-tts>=0.24.0
 
-# Utilidades necesarias para XTTS
+# --- Dependencias auxiliares ---
 pysbd
 num2words
-pandas
 scipy
+
+# --- Manejo de Datasets de Hugging Face ---
+datasets==2.19.0
+
+# --- Procesamiento de Audio ---
+librosa==0.10.1
+soundfile==0.12.1
+
+# --- Para transformar o algo asi ---
+transformers==4.40.0
+
+# --- Si no coqui se queja ---
+pydantic>=1.10.0,<2.0.0
