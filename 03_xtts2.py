@@ -8,8 +8,12 @@ import soundfile as sf # Necesario para guardar el audio de referencia
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Usando dispositivo: {device}")
 
-# 2. Cargar el modelo (Esto descargará ~2GB la primera vez)
-tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2").to(device)
+# 2.1 Cargar el modelo (Esto descargará ~2GB la primera vez)
+#tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2").to(device)
+
+# 2.2 En caso de tener el modelo en local
+path_al_modelo = 'C:/Users/Vespertino/AppData/Local/tts/tts_models--multilingual--multi-dataset--xtts_v2'
+tts = TTS(model_path=path_al_modelo, config_path=os.path.join(path_al_modelo, "config.json")).to(device)
 
 os.makedirs("./output", exist_ok=True)
 
