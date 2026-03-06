@@ -5,8 +5,8 @@ Generate speech for multiple sentences with different speaker voices.
 
 import os
 import sys
-import torch
 import numpy as np
+import torch
 from scipy.io.wavfile import write as write_wav
 
 from transformers import SpeechT5Processor, SpeechT5ForTextToSpeech, SpeechT5HifiGan

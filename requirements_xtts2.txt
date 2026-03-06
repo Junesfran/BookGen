@@ -1,0 +1,13 @@
+# Núcleo de computación
+torch==2.1.2
+torchaudio==2.1.2
+numpy<2.0.0
+
+# El motor de voz
+coqui-tts==0.22.0
+
+# Utilidades necesarias para XTTS
+pysbd
+num2words
+pandas
+scipy

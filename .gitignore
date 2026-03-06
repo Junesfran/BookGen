@@ -2,3 +2,5 @@
 /.venvç/*
 /.prueba/*
 /datasets/*
+venv_huggingface/
+venv_xtts/
