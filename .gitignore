@@ -3,3 +3,4 @@
 /dataset/*
 !/dataset/euskera.parquet
 /.venv/*
+/.venv2/*
