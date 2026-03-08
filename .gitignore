@@ -4,3 +4,7 @@
 datasets/
 venv_huggingface/
 venv_xtts311/
+/pretrained_models/*
+/dataset/*
+/.venv/*
+/.venv2/*

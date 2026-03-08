@@ -1,3 +1,10 @@
+***IMPORTANTE***
+---
+El entorno virtual tiene que estar en python3.11
+
+        py -3.11 -m venv .venv
+        
+>>>>>>> bonito
 ***Dataset usado***
 ---
 por ahora
