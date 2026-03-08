@@ -1,6 +1,6 @@
 /models/*
 /.venvç/*
 /.prueba/*
-/datasets/*
+datasets/
 venv_huggingface/
 venv_xtts311/
