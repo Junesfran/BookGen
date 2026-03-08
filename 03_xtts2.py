@@ -9,11 +9,11 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Usando dispositivo: {device}")
 
 # 2.1 Cargar el modelo (Esto descargará ~2GB la primera vez)
-#tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2").to(device)
+tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2").to(device)
 
 # 2.2 En caso de tener el modelo en local
-path_al_modelo = 'C:/Users/Vespertino/AppData/Local/tts/tts_models--multilingual--multi-dataset--xtts_v2'
-tts = TTS(model_path=path_al_modelo, config_path=os.path.join(path_al_modelo, "config.json")).to(device)
+#path_al_modelo = 'C:/Users/Vespertino/AppData/Local/tts/tts_models--multilingual--multi-dataset--xtts_v2'
+#tts = TTS(model_path=path_al_modelo, config_path=os.path.join(path_al_modelo, "config.json")).to(device)
 
 os.makedirs("./output", exist_ok=True)
 
@@ -27,15 +27,16 @@ ejemplo_audio = dataset_chileno[0]["audio"]
 ruta_temporal_ref = "referencia_chilena.wav"
 sf.write(ruta_temporal_ref, ejemplo_audio["array"], ejemplo_audio["sampling_rate"])
 
-texto_a_decir = "Hola, cachai que ahora estoy probando una clonación con acento chileno mucho más natural."
+texto_a_decir = "Hola, ahora estoy probando una clonación mucho más natural."
 
 # 5. Generar el audio
 print("Generando voz... ten paciencia, XTTS es pesado.")
 tts.tts_to_file(
     text=texto_a_decir,
     speaker_wav=ruta_temporal_ref, # Ahora sí es una ruta válida
+    #speaker_wav='clonacion_voz.wav',
     language="es",
-    file_path="./output/resultado_chileno_natural.wav"
+    file_path="./output/resultado.wav"
 )
 
-print("¡Éxito! Audio generado en ./output/resultado_chileno_natural.wav")
+print("¡Éxito! Audio generado en ./output/resultado.wav")

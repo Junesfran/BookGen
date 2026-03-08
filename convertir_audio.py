@@ -1,7 +1,13 @@
 from pydub import AudioSegment
 import os
+import sys
 
-AudioSegment.converter = "ffmpeg.exe" 
+# Obtener la ruta de la carpeta donde está este script
+base_path = os.path.dirname(os.path.abspath(__file__))
+
+# Configurar las rutas explícitas para ffmpeg y ffprobe
+AudioSegment.converter = os.path.join(base_path, "ffmpeg.exe")
+AudioSegment.ffprobe   = os.path.join(base_path, "ffprobe.exe")
 
 def preparar_audio_para_xtts(ruta_entrada, ruta_salida):
     # 1. Cargar el archivo (detecta m4a, mp3, etc.)
@@ -17,4 +23,4 @@ def preparar_audio_para_xtts(ruta_entrada, ruta_salida):
     print(f"✅ Audio convertido con éxito: {ruta_salida}")
 
 # Uso:
-preparar_audio_para_xtts("mi_voz_movil.m4a", "clonacion_voz.wav")
+preparar_audio_para_xtts("", "clonacion_voz.wav")
