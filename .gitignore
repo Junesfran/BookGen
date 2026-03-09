@@ -2,5 +2,5 @@
 /pretrained_models/*
 /dataset/*
 !/dataset/euskera.parquet
-/.venv/*
-/.venv2/*
+!/dataset/Don_Quijote.txt
+/.venv4/*
