@@ -17,3 +17,9 @@ Usamos como referencias de voz personalizadas, así como el siguiente dataset de
 ---
 
     https://huggingface.co/coqui/XTTS-v2
+
+---
+## ADVERTENCIA QUE DE ADVIERTE DE LO QUE DEBES SER ADVERTIDO
+<div align="center">
+  <img src="./imagen.jpeg" alt="Texto alternativo" />
+</div>
