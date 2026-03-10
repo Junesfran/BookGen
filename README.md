@@ -2,16 +2,14 @@
 ---
 El entorno virtual tiene que estar en python3.10
 
-        py -3.10 -m venv .venv
+        py -3.11 -m venv .venv
         
 ***Dataset usado***
 ---
-por ahora
+Usamos como referencias de voz personalizadas, así como el siguiente dataset de prueba
 
-    https://huggingface.co/datasets/dvinagre/euskera-speaker-embeddings/tree/main/data
+    https://huggingface.co/datasets/ylacombe/google-chilean-spanish
 ***Modelos usados***
 ---
 
-    https://huggingface.co/microsoft/speecht5_tts
----
-    https://huggingface.co/microsoft/speecht5_hifigan
+    https://huggingface.co/coqui/XTTS-v2
