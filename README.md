@@ -60,3 +60,6 @@ Ejeccución:
 py src/app.py
 ```
 
+Referencias:
+Modelo: https://huggingface.co/coqui/XTTS-v2
+Se eligió este modelo, ya que era fácil de implementar y tras haber usado un modelo de Microsoft al cual habia que entrenar manualmente y generaba resultados que no eran del todo óptimos.
