@@ -1,5 +1,9 @@
 ***IMPORTANTE***
 ---
+Hecho por:
+* Juan Néstor Franco
+* Hugo Quesada
+  
 El entorno virtual tiene que estar en python3.10
 
         py -3.11 -m venv .venv
