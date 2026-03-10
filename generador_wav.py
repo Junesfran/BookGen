@@ -20,12 +20,9 @@ def generar_wav(entrenamiento: str):
 
     # 3. Cargar el dataset chileno
     print("Cargando dataset...")
-    dataset_chileno = load_dataset("ylacombe/google-chilean-spanish", "female", split="train", streaming=False)
-
+    
     # 4. Extraer el primer audio y guardarlo como temporal para XTTS
-    ejemplo_audio = dataset_chileno[0]["audio"]
     ruta_temporal_ref = "./datasets/referencias/"+entrenamiento
-    sf.write(ruta_temporal_ref, ejemplo_audio["array"], ejemplo_audio["sampling_rate"])
 
     # 4.4. Usaremos como muestra de ejemplo un fragmento del Quijote
     archivo = open('./datasets/Don_Quijote.txt', 'r')

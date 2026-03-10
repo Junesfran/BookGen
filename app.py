@@ -28,7 +28,7 @@ def volver_lanzar(entrenamiento: str):
 def recibir_referencia(archivo: str):
     archivo_premium = request.files["archivo"]
     
-    ruta_guardado = os.path.join('.','datasets', archivo)
+    ruta_guardado = os.path.join('.','datasets','referencias', archivo)
     
     with open(ruta_guardado, "wb") as f:
         f.write(archivo_premium.read())
