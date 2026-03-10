@@ -28,3 +28,35 @@ Procesamiento: Los datos se procesan mediante nuestro script src/convertir_audio
 - Formato: WAV (PCM 16-bit).
 - Canal: Mono (único).
 - Frecuencia: 22050 Hz (estándar nativo del modelo XTTSv2).
+
+## Datos
+El audio que usamos para entrenar el modelo se puede encontrar en https://archive.org/details/don_quijote_vol1_0706_librivox/quijote_vol1_01_cervantes.mp3
+
+## Instrucciones de Instalación y Ejecución
+Copiar el repositorio:
+```
+git clone https://github.com/Junesfran/BookGen.git
+cd BookGen
+```
+Para que el proyecto funcione, se debe instalar python 3.11.
+
+Para que las librerías de audio (Coqui TTS) funcionen en Windows, se deben instalar las herramientas de compilación de C++:
+- Descarga el Visual Studio Installer.
+- Al instalar, selecciona: "Desarrollo de escritorio con C++".
+- Incluye el Windows 10/11 SDK y MSVC v143.
+
+Crear entorno y activarlo
+```
+py -3.11 -m venv venv_xtts_311
+.\venv_xtts_311\Scripts\activate
+```
+Instalar dependencias:
+```
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+Ejeccución:
+```
+py src/app.py
+```
+
