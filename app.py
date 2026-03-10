@@ -1,5 +1,6 @@
-from flask import Flask, send_file, request
+from flask import Flask, send_file, request, redirect
 from arranque import funcionamiento_modelo
+from descarga_contenido import bajar_modelo
 import os 
 
 app = Flask(__name__)
@@ -10,6 +11,7 @@ def nada():
 
 @app.get('/<entrenamiento>')
 def ver_resultado(entrenamiento: str):
+    
     if not os.path.isfile('./output/resultado.wav'):
         funcionamiento_modelo(entrenamiento)
     
@@ -19,7 +21,8 @@ def ver_resultado(entrenamiento: str):
 def volver_lanzar(entrenamiento: str):
     funcionamiento_modelo(entrenamiento)
     
-    return send_file('./output/resultado.wav')
+    return redirect('/<entrenamiento>/' + entrenamiento)
+    
 
 @app.post("/subir/<archivo>")
 def recibir_referencia(archivo: str):
