@@ -40,10 +40,14 @@ cd BookGen
 ```
 Para que el proyecto funcione, se debe instalar python 3.11.
 
+Link de descarga: https://www.python.org/ftp/python/3.11.0/python-3.11.0-amd64.exe
+
 Para que las librerías de audio (Coqui TTS) funcionen en Windows, se deben instalar las herramientas de compilación de C++:
 - Descarga el Visual Studio Installer.
 - Al instalar, selecciona: "Desarrollo de escritorio con C++".
 - Incluye el Windows 10/11 SDK y MSVC v143.
+
+Link de descarga: https://visualstudio.microsoft.com/es/thank-you-downloading-visual-studio/?sku=buildtools&rel=17
 
 Crear entorno y activarlo
 ```
@@ -59,10 +63,6 @@ Ejeccución:
 ```
 py src/app.py
 ```
-
-Referencias:
-Modelo: https://huggingface.co/coqui/XTTS-v2
-Se eligió este modelo, ya que era fácil de implementar y tras haber usado un modelo de Microsoft al cual habia que entrenar manualmente y generaba resultados que no eran del todo óptimos.
 
 ## ADVERTENCIA QUE DE ADVIERTE DE LO QUE DEBES SER ADVERTIDO
 <div align="center">
