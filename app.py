@@ -21,7 +21,7 @@ def ver_resultado(entrenamiento: str):
 def volver_lanzar(entrenamiento: str):
     funcionamiento_modelo(entrenamiento)
     
-    return redirect('/<entrenamiento>/' + entrenamiento)
+    return redirect('/' + entrenamiento)
     
 
 @app.post("/subir/<archivo>")
