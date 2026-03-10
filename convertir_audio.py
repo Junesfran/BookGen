@@ -23,4 +23,4 @@ def preparar_audio_para_xtts(ruta_entrada, ruta_salida):
     print(f"✅ Audio convertido con éxito: {ruta_salida}")
 
 # Uso:
-preparar_audio_para_xtts("", "clonacion_voz.wav")
+preparar_audio_para_xtts("quijote_vol1_01_cervantes.mp3", "quijote.wav")

@@ -1,0 +1,4 @@
+venv_xtts_311/
+.git/
+__pycache__/
+models/
