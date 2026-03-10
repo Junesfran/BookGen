@@ -1,4 +1,7 @@
-## Integrantes
+***[NOMBRE DEL MODULO]***
+---
+
+## Integrantes:
  - Hugo Quesada
  - Juan Nestor Franco
 
